@@ -16,6 +16,4 @@ basic directus boilerplate
 2. `docker-compose up -d`
 
 from docs:
-```
-The images will be pulled and the containers recreated. Migrations will happen automatically so once the containers have started you will be on the latest version (or the version you specified).
-```
+`The images will be pulled and the containers recreated. Migrations will happen automatically so once the containers have started you will be on the latest version (or the version you specified).` 
