@@ -34,6 +34,7 @@ services:
       # - ./extensions:/directus/extensions
     networks:
       - directus
+      - external
     depends_on:
       - cache
       - database
@@ -59,3 +60,6 @@ services:
 
 networks:
   directus:
+  external:
+    name: $EXTERNAL_NETWORK_NAME
+    external: true
