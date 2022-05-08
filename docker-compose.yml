@@ -57,6 +57,8 @@ services:
       ADMIN_PASSWORD: $ADMIN_PASSWORD
 
       PUBLIC_URL: $PUBLIC_URL
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: $CORS_ORIGIN
 
 networks:
   directus:
