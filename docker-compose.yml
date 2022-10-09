@@ -1,7 +1,7 @@
 version: "3"
 services:
   database:
-    container_name: database
+    container_name: $PROJECT_NAME-database
     image: postgis/postgis:13-master
     volumes:
       - ./data/database:/var/lib/postgresql/data
@@ -13,16 +13,16 @@ services:
       POSTGRES_DB: $DB_DB
 
   cache:
-    container_name: cache
+    container_name: $PROJECT_NAME-cache
     image: redis:6
     networks:
       - directus
 
   directus:
-    container_name: directus
+    container_name: $PROJECT_NAME-directus
     image: directus/directus:latest
     ports:
-      - 8055:8055
+      - $DIRECTUS_PORT:$DIRECTUS_PORT
     volumes:
       - ./uploads:/directus/uploads
       - ./extensions:/directus/extensions
@@ -33,6 +33,9 @@ services:
       - cache
       - database
     environment:
+      HOST: "0.0.0.0"
+      PORT: $DIRECTUS_PORT
+
       KEY: $KEY
       SECRET: $SECRET
 
@@ -58,6 +61,7 @@ services:
 
 networks:
   directus:
+    name: $INTERNAL_NETWORK_NAME
   external:
     name: $EXTERNAL_NETWORK_NAME
     external: true
