@@ -11,12 +11,14 @@ services:
       POSTGRES_USER: $DB_USER
       POSTGRES_PASSWORD: $DB_PASSWORD
       POSTGRES_DB: $DB_DB
+    restart: unless-stopped
 
   cache:
     container_name: $PROJECT_NAME-cache
     image: redis:6
     networks:
       - directus
+    restart: unless-stopped
 
   directus:
     container_name: $PROJECT_NAME-directus
@@ -32,6 +34,7 @@ services:
     depends_on:
       - cache
       - database
+    restart: unless-stopped
     environment:
       HOST: "0.0.0.0"
       PORT: $DIRECTUS_PORT
